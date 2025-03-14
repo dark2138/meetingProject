@@ -48,9 +48,10 @@ public class ScheduleController {
             @Valid @RequestBody @Parameter(description = "일정 생성 요청 데이터")
             ScheduleRequestDto requestDto
             ){
-        accessToken = extractToken(accessToken);
+
 
         try {
+            accessToken = extractToken(accessToken);
             String schedule = scheduleService.createSchedule(requestDto, meetingId, accessToken);
             return ResponseEntity.ok(
                     ApiResponseDto.success("SCHEDULE_CREATE_SUCCESS", schedule)
@@ -94,9 +95,10 @@ public class ScheduleController {
             @Valid @RequestBody @Parameter(description = "일정 수정 요청 데이터")
             ScheduleRequestDto requestDto
     ){
-        accessToken = extractToken(accessToken);
+
 
         try {
+            accessToken = extractToken(accessToken);
             String schedule = scheduleService.upadteSchedule(requestDto, meetingId, scheduleId, accessToken);
             return ResponseEntity.ok(
                     ApiResponseDto.success("SCHEDULE_CREATE_SUCCESS", schedule)
@@ -138,9 +140,11 @@ public class ScheduleController {
             @PathVariable(name = "scheduleId") @Parameter(description = "스케줄 ID")
             Long scheduleId
     ){
-        accessToken = extractToken(accessToken);
+
 
         try {
+
+            accessToken = extractToken(accessToken);
             String result = scheduleService.deleteSchedule(meetingId, scheduleId, accessToken);
             return ResponseEntity.ok(
                     ApiResponseDto.success("SCHEDULE_DELETE_SUCCESS", result)
@@ -225,9 +229,11 @@ public class ScheduleController {
             @PathVariable(name = "scheduleId") @Parameter(description = "스케줄 ID")
             Long scheduleId
     ){
-        accessToken = extractToken(accessToken);
+
 
         try {
+
+            accessToken = extractToken(accessToken);
             String result = scheduleService.scheduleJoin(meetingId, scheduleId, accessToken);
             return ResponseEntity.ok(
                     ApiResponseDto.success("SCHEDULE_LIST_SUCCESS", result)
@@ -270,9 +276,11 @@ public class ScheduleController {
             @PathVariable(name = "scheduleId") @Parameter(description = "스케줄 ID")
             Long scheduleId
     ){
-        accessToken = extractToken(accessToken);
+
 
         try {
+
+            accessToken = extractToken(accessToken);
             String result = scheduleService.leaveSchedule(meetingId, scheduleId, accessToken);
             return ResponseEntity.ok(
                     ApiResponseDto.success("SCHEDULEPARTICIPANT_DELETE_SUCCESS", result)

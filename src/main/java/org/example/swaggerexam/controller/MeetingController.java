@@ -48,9 +48,11 @@ public class MeetingController {
             @Valid @RequestBody @Parameter(description = "미팅 생성 요청 데이터")
             MeetingRequestDto meetingRequestDto) {
 
-        accessToken = extractToken(accessToken);
+
 
         try {
+
+            accessToken = extractToken(accessToken);
             MeetingResponseDto add = meetingService.add(meetingRequestDto, accessToken);
 
 
@@ -179,7 +181,7 @@ public class MeetingController {
             @Parameter(description = "JWT 인증 토큰", required = true, example = "Bearer exjflfsgkgl...")
             @RequestHeader("Authorization") String accessToken) {
 
-        accessToken = extractToken(accessToken);
+
 
         try {
             String result = meetingService.delete(meetingId, accessToken);
@@ -223,9 +225,9 @@ public class MeetingController {
             @Parameter(description = "JWT 인증 토큰", required = true, example = "Bearer exjflfsgkgl...")
             @RequestHeader("Authorization") String accessToken) {
 
-        accessToken = extractToken(accessToken);
-
         try {
+
+            accessToken = extractToken(accessToken);
             String result = meetingService.meetingJoin(meetingId, accessToken);
             return ResponseEntity.ok(
                     ApiResponseDto.success("MEETING_JOIN_SUCCESS", result)
@@ -302,9 +304,11 @@ public class MeetingController {
             @Parameter(description = "JWT 인증 토큰", required = true, example = "Bearer exjflfsgkgl...")
             @RequestHeader("Authorization") String accessToken) {
 
-        accessToken = extractToken(accessToken);
+
 
         try {
+
+            accessToken = extractToken(accessToken);
             String result = meetingService.deleteParticipants(participantId, accessToken);
             return ResponseEntity.ok(
                     ApiResponseDto.success("MEETINGPARTICIPANT_DELETE_SUCCESS", result)
