@@ -32,20 +32,18 @@ public class MeetingService {
 
     @Transactional
     public MeetingResponseDto add(MeetingRequestDto meetingRequestDto, String accessToken) {
+        String email = jwtUtil.validateAccessToken(accessToken);
+        if (email == null) {
+            throw new IllegalArgumentException("유효하지 않은 토큰입니다.");
+        }
 
         validate(meetingRequestDto);
-
 
         Meeting meeting = new Meeting();
         meeting.setTitle(meetingRequestDto.getName());
         meeting.setDescription(meetingRequestDto.getDescription());
         meeting.setMaxParticipants(meetingRequestDto.getMaxParticipants());
 
-
-        String email = jwtUtil.validateAccessToken(accessToken);
-        if (email == null) {
-            throw new IllegalArgumentException("유효하지 않은 토큰입니다.");
-        }
 
         User user =  userRepository.findByEmail(email).get();
 
