@@ -14,6 +14,7 @@ import org.example.swaggerexam.dto.MeetingParticipantResponseDto;
 import org.example.swaggerexam.dto.MeetingRequestDto;
 import org.example.swaggerexam.dto.MeetingResponseDto;
 import org.example.swaggerexam.exception.type.BadRequestException;
+import org.example.swaggerexam.exception.type.ForbiddenException;
 import org.example.swaggerexam.service.MeetingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -63,7 +64,7 @@ public class MeetingController {
             log.error("Invalid token: ", e);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(ApiResponseDto.error("INVALID_TOKEN", e.getMessage()));
-        } catch (IllegalStateException e) {
+        } catch (ForbiddenException e) {
             log.error("Permission denied: ", e);
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
                     .body(ApiResponseDto.error("PERMISSION_DENIED", e.getMessage()));
@@ -101,7 +102,7 @@ public class MeetingController {
             log.error("Invalid token: ", e);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(ApiResponseDto.error("INVALID_TOKEN", e.getMessage()));
-        } catch (IllegalStateException e) {
+        } catch (ForbiddenException e) {
             log.error("Permission denied: ", e);
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
                     .body(ApiResponseDto.error("PERMISSION_DENIED", e.getMessage()));
@@ -145,7 +146,7 @@ public class MeetingController {
             log.error("Invalid token: ", e);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(ApiResponseDto.error("INVALID_TOKEN", e.getMessage()));
-        } catch (IllegalStateException e) {
+        } catch (ForbiddenException e) {
             log.error("Permission denied: ", e);
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
                     .body(ApiResponseDto.error("PERMISSION_DENIED", e.getMessage()));
@@ -187,7 +188,7 @@ public class MeetingController {
             log.error("Invalid token: ", e);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(ApiResponseDto.error("INVALID_TOKEN", e.getMessage()));
-        } catch (IllegalStateException e) {
+        } catch (ForbiddenException e) {
             log.error("Permission denied: ", e);
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
                     .body(ApiResponseDto.error("PERMISSION_DENIED", e.getMessage()));
@@ -229,7 +230,7 @@ public class MeetingController {
             log.error("Invalid token: ", e);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(ApiResponseDto.error("INVALID_TOKEN", e.getMessage()));
-        } catch (IllegalStateException e) {
+        } catch (ForbiddenException e) {
             log.error("Permission denied: ", e);
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
                     .body(ApiResponseDto.error("PERMISSION_DENIED", e.getMessage()));
@@ -267,7 +268,7 @@ public class MeetingController {
             log.error("Invalid token: ", e);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(ApiResponseDto.error("INVALID_TOKEN", e.getMessage()));
-        } catch (IllegalStateException e) {
+        } catch (ForbiddenException e) {
             log.error("Permission denied: ", e);
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
                     .body(ApiResponseDto.error("PERMISSION_DENIED", e.getMessage()));
@@ -309,7 +310,7 @@ public class MeetingController {
             log.error("Invalid token: ", e);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(ApiResponseDto.error("INVALID_TOKEN", e.getMessage()));
-        } catch (IllegalStateException e) {
+        } catch (ForbiddenException e) {
             log.error("Permission denied: ", e);
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
                     .body(ApiResponseDto.error("PERMISSION_DENIED", e.getMessage()));
