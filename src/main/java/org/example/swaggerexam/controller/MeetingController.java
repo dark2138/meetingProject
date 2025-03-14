@@ -135,13 +135,8 @@ public class MeetingController {
             MeetingRequestDto meetingRequestDto
     ) {
         try {
-            // 1. 토큰에서 "Bearer " 제거 (유틸리티 메서드 추천)
             String token = extractToken(accessToken);
-
-            // 2. 서비스 호출
             String result = meetingService.modify(meetingRequestDto, meetingId, token);
-
-            // 3. 표준화된 응답 반환
             return ResponseEntity.ok(
                     ApiResponseDto.success("MEETING_MODIFY_SUCCESS", result)
             );
@@ -330,7 +325,6 @@ public class MeetingController {
     }
 
 
-    // Bearer 토큰 추출 유틸리티 메서드
     private String extractToken(String header) {
         if (StringUtils.hasText(header) && header.startsWith("Bearer ")) {
             return header.substring(7);

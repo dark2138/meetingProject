@@ -350,7 +350,6 @@ public class ScheduleController {
     }
 
 
-    // Bearer 토큰 추출 유틸리티 메서드
     private String extractToken(String header) {
         if (StringUtils.hasText(header) && header.startsWith("Bearer ")) {
             return header.substring(7);
