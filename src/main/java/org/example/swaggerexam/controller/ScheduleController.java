@@ -47,7 +47,7 @@ public class ScheduleController {
             Long meetingId,
             @Valid @RequestBody @Parameter(description = "일정 생성 요청 데이터")
             ScheduleRequestDto requestDto
-            ){
+    ) {
 
 
         try {
@@ -94,7 +94,7 @@ public class ScheduleController {
             Long scheduleId,
             @Valid @RequestBody @Parameter(description = "일정 수정 요청 데이터")
             ScheduleRequestDto requestDto
-    ){
+    ) {
 
 
         try {
@@ -139,7 +139,7 @@ public class ScheduleController {
             Long meetingId,
             @PathVariable(name = "scheduleId") @Parameter(description = "스케줄 ID")
             Long scheduleId
-    ){
+    ) {
 
 
         try {
@@ -170,7 +170,7 @@ public class ScheduleController {
 
 
     }
-    
+
 
     // 일정 목록 조회
     @ApiResponses(value = {
@@ -184,7 +184,7 @@ public class ScheduleController {
     @GetMapping
     public ResponseEntity<ApiResponseDto<List<ScheduleResponseDto>>> getSchedules(
             @PathVariable(name = "meetingId") @Parameter(description = "미팅 ID")
-            Long meetingId){
+            Long meetingId) {
 
         try {
             List<ScheduleResponseDto> schedules = scheduleService.list(meetingId);
@@ -228,7 +228,7 @@ public class ScheduleController {
             Long meetingId,
             @PathVariable(name = "scheduleId") @Parameter(description = "스케줄 ID")
             Long scheduleId
-    ){
+    ) {
 
 
         try {
@@ -275,7 +275,7 @@ public class ScheduleController {
             Long meetingId,
             @PathVariable(name = "scheduleId") @Parameter(description = "스케줄 ID")
             Long scheduleId
-    ){
+    ) {
 
 
         try {
@@ -323,7 +323,7 @@ public class ScheduleController {
             Long meetingId,
             @PathVariable(name = "scheduleId") @Parameter(description = "스케줄 ID")
             Long scheduleId
-    ){
+    ) {
         try {
             List<ScheduleParticipantResponseDto> participants =
                     scheduleService.getScheduleParticipants(meetingId, scheduleId);
@@ -348,7 +348,6 @@ public class ScheduleController {
                     .body(ApiResponseDto.error("INTERNAL_SERVER_ERROR", "An unexpected error occurred"));
         }
     }
-
 
 
     // Bearer 토큰 추출 유틸리티 메서드

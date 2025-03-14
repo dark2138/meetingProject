@@ -49,7 +49,6 @@ public class MeetingController {
             MeetingRequestDto meetingRequestDto) {
 
 
-
         try {
 
             accessToken = extractToken(accessToken);
@@ -130,7 +129,7 @@ public class MeetingController {
     public ResponseEntity<ApiResponseDto<String>> modifyMeeting(
             @Parameter(description = "JWT 인증 토큰", required = true, example = "Bearer exjflfsgkgl...")
             @RequestHeader("Authorization") String accessToken,
-            @PathVariable(name = "meetingId")  @Parameter(description = "미팅 ID")
+            @PathVariable(name = "meetingId") @Parameter(description = "미팅 ID")
             Long meetingId,
             @Valid @RequestBody @Parameter(description = "미팅 수정 요청 데이터")
             MeetingRequestDto meetingRequestDto
@@ -180,7 +179,6 @@ public class MeetingController {
             Long meetingId,
             @Parameter(description = "JWT 인증 토큰", required = true, example = "Bearer exjflfsgkgl...")
             @RequestHeader("Authorization") String accessToken) {
-
 
 
         try {
@@ -288,7 +286,7 @@ public class MeetingController {
                     .body(ApiResponseDto.error("INTERNAL_SERVER_ERROR", "An unexpected error occurred"));
         }
     }
-    
+
     @Operation(summary = "특정 모임 참가자 참가 취소 ", description = "특정 모임 참가자 참가 취소합니다.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "성공"),
@@ -303,7 +301,6 @@ public class MeetingController {
             Long participantId,
             @Parameter(description = "JWT 인증 토큰", required = true, example = "Bearer exjflfsgkgl...")
             @RequestHeader("Authorization") String accessToken) {
-
 
 
         try {

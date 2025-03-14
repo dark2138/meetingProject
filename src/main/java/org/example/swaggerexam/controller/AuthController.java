@@ -40,7 +40,7 @@ public class AuthController {
     })
     @PostMapping("/register")
     public ResponseEntity<ApiResponseDto<String>> register(
-            @Valid  @RequestBody @Parameter(description = "사용자 생성 요청 데이터")
+            @Valid @RequestBody @Parameter(description = "사용자 생성 요청 데이터")
             RegisterRequestDto registerRequestDto) {
 
         try {
@@ -83,7 +83,7 @@ public class AuthController {
     })
     @PostMapping("/login")
     public ResponseEntity<ApiResponseDto<LoginResponseDto>> login(
-            @Valid  @RequestBody @Parameter(description = "로그인 생성 요청 데이터")
+            @Valid @RequestBody @Parameter(description = "로그인 생성 요청 데이터")
             LoginRequestDto loginRequestDto) {
 
         try {
@@ -170,7 +170,6 @@ public class AuthController {
             @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
         try {
 
-            // 페이지 번호는 0부터 시작하므로 1을 빼줍니다.
             Page<UserDto> users = userService.getUsers(page - 1, size);
 
             return ResponseEntity.ok(ApiResponseDto.success("USERS_LIST_SUCCESS", users));
