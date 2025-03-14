@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: swaggerExam
+
+
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/swagger
+    username: swagger
+    password: swagger
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+server:
+  tomcat:
+    max-threads: 2 #최대 쓰레드 수
+    min-spare-threads: 2 #최소 여유 쓰레드 수
+
+logging:
+  level:
+    org:
+      springframework:
+        security: TRACE
+
+jwt:
+  secretKey: 12345678901234567890123456789012
+  refreshKey: 12345678901234567890123456789012
