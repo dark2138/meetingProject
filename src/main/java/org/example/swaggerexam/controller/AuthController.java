@@ -51,19 +51,19 @@ public class AuthController {
             return ResponseEntity.ok(ApiResponseDto.success("Register_successfully", register));
 
         } catch (IllegalArgumentException e) {
-            log.error("Invalid token: ", e);
+            log.error("Invalid token: ", e); // 401
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(ApiResponseDto.error("INVALID_TOKEN", e.getMessage()));
         } catch (IllegalStateException e) {
-            log.error("Permission denied: ", e);
+            log.error("Permission denied: ", e); // 403
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
                     .body(ApiResponseDto.error("PERMISSION_DENIED", e.getMessage()));
         } catch (BadRequestException e) {
-            log.error("Bad request: ", e);
+            log.error("Bad request: ", e); // 400
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(ApiResponseDto.error("BAD_REQUEST", e.getMessage()));
         } catch (Exception e) {
-            log.error("Internal server error: ", e);
+            log.error("Internal server error: ", e); // 500
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(ApiResponseDto.error("INTERNAL_SERVER_ERROR", "An unexpected error occurred"));
         }
