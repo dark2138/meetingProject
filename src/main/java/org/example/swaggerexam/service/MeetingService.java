@@ -76,11 +76,11 @@ public class MeetingService {
             throw new IllegalArgumentException("유효하지 않은 토큰입니다.");
         }
 
-        // 2. 기존 미팅 조회 (Optional 안전 처리)
+        // 2. 기존 미팅 조회
         Meeting meeting = meetingRepository.findById(meetingId)
                 .orElseThrow(() -> new IllegalArgumentException("미팅이 존재하지 않습니다."));
 
-        // 3. Owner 검증 (User 엔티티의 이메일과 비교)
+        // 3. Owner 검증
         User owner = meeting.getOwner();
         if (!owner.getEmail().equals(email)) {
             throw new IllegalArgumentException("생성자만 수정할 수 있습니다.");
@@ -95,7 +95,7 @@ public class MeetingService {
         meeting.setDescription(meetingRequestDto.getDescription());
         meeting.setMaxParticipants(meetingRequestDto.getMaxParticipants());
 
-        // 5. 저장 (트랜잭션 커밋 시 자동 반영됨)
+
         return "수정 성공";
     }
 

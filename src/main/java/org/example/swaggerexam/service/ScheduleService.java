@@ -37,7 +37,7 @@ public class ScheduleService {
             throw new IllegalArgumentException("유효하지 않은 토큰입니다.");
         }
 
-        // 2. 사용자 조회
+        // 1. 사용자 조회
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없음"));
 
@@ -111,7 +111,7 @@ public class ScheduleService {
             throw new IllegalArgumentException("해당 미팅의 일정이 아닙니다.");
         }
 
-        // 5. 권한 확인 (소유자 또는 관리자)
+        // 5. 권한 확인
         if (!user.getId().equals(schedule.getOwner().getId())) {
             throw new IllegalStateException("일정 삭제 권한이 없습니다.");
         }
@@ -130,12 +130,12 @@ public class ScheduleService {
     @Transactional(readOnly = true)
     public List<ScheduleResponseDto> list(Long meetingId) {
 
-        // 1. 미팅 존재 여부 확인 (선택 사항)
+        // 1. 미팅 존재 여부 확인
         if (!meetingRepository.existsById(meetingId)) {
             throw new IllegalArgumentException("미팅이 존재하지 않습니다.");
         }
 
-        // 2. 스케줄 조회 (페치 조인으로 N+1 문제 해결)
+        // 2. 스케줄 조회
         List<Schedule> schedules = scheduleRepository.findByMeetingIdWithDetails(meetingId);
 
 
@@ -241,7 +241,7 @@ public class ScheduleService {
             throw new IllegalArgumentException("해당 미팅의 일정이 아닙니다.");
         }
 
-        // 2. 참가자 조회 (페치 조인으로 최적화)
+        // 2. 참가자 조회
         List<ScheduleParticipant> participants =
                 scheduleParticipantRepository.findByScheduleWithUser(schedule);
 
