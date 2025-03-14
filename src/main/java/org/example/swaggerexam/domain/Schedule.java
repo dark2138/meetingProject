@@ -29,15 +29,7 @@ public class Schedule {
 
     @Column(nullable = false)
     private String title;
-    /*
-        @Column(nullable = false)
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-        private LocalDate date; // 날짜 (예: 2025-02-25)
 
-        @Column(nullable = false)
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
-        private LocalTime time; // 시간 필드 (예: "14:00:00")
-    */
     @Column(nullable = false)
     private String date;
 
@@ -46,12 +38,7 @@ public class Schedule {
 
 
     @Column(nullable = false)
-    private String location; // 장소 (예: "Online Zoom Meeting")
-
-
-
-
-
+    private String location;
 
     private LocalDateTime createdAt;
 
