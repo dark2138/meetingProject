@@ -12,6 +12,7 @@ import org.example.swaggerexam.dto.ApiResponseDto;
 import org.example.swaggerexam.dto.ScheduleParticipantResponseDto;
 import org.example.swaggerexam.dto.ScheduleRequestDto;
 import org.example.swaggerexam.dto.ScheduleResponseDto;
+import org.example.swaggerexam.exception.type.BadRequestException;
 import org.example.swaggerexam.service.ScheduleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,12 +56,21 @@ public class ScheduleController {
                     ApiResponseDto.success("SCHEDULE_CREATE_SUCCESS", schedule)
             );
         } catch (IllegalArgumentException e) {
+            log.error("Invalid token: ", e);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(ApiResponseDto.error("INVALID_TOKEN", e.getMessage()));
-
         } catch (IllegalStateException e) {
+            log.error("Permission denied: ", e);
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
                     .body(ApiResponseDto.error("PERMISSION_DENIED", e.getMessage()));
+        } catch (BadRequestException e) {
+            log.error("Bad request: ", e);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(ApiResponseDto.error("BAD_REQUEST", e.getMessage()));
+        } catch (Exception e) {
+            log.error("Internal server error: ", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ApiResponseDto.error("INTERNAL_SERVER_ERROR", "An unexpected error occurred"));
         }
     }
 
@@ -92,12 +102,21 @@ public class ScheduleController {
                     ApiResponseDto.success("SCHEDULE_CREATE_SUCCESS", schedule)
             );
         } catch (IllegalArgumentException e) {
+            log.error("Invalid token: ", e);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(ApiResponseDto.error("INVALID_TOKEN", e.getMessage()));
-
         } catch (IllegalStateException e) {
+            log.error("Permission denied: ", e);
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
                     .body(ApiResponseDto.error("PERMISSION_DENIED", e.getMessage()));
+        } catch (BadRequestException e) {
+            log.error("Bad request: ", e);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(ApiResponseDto.error("BAD_REQUEST", e.getMessage()));
+        } catch (Exception e) {
+            log.error("Internal server error: ", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ApiResponseDto.error("INTERNAL_SERVER_ERROR", "An unexpected error occurred"));
         }
     }
 
@@ -128,12 +147,21 @@ public class ScheduleController {
             );
 
         } catch (IllegalArgumentException e) {
+            log.error("Invalid token: ", e);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(ApiResponseDto.error("INVALID_TOKEN", e.getMessage()));
-
         } catch (IllegalStateException e) {
+            log.error("Permission denied: ", e);
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
                     .body(ApiResponseDto.error("PERMISSION_DENIED", e.getMessage()));
+        } catch (BadRequestException e) {
+            log.error("Bad request: ", e);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(ApiResponseDto.error("BAD_REQUEST", e.getMessage()));
+        } catch (Exception e) {
+            log.error("Internal server error: ", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ApiResponseDto.error("INTERNAL_SERVER_ERROR", "An unexpected error occurred"));
         }
 
 
@@ -160,14 +188,22 @@ public class ScheduleController {
                     ApiResponseDto.success("SCHEDULE_LIST_SUCCESS", schedules)
             );
         } catch (IllegalArgumentException e) {
+            log.error("Invalid token: ", e);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(ApiResponseDto.error("INVALID_TOKEN", e.getMessage()));
-
         } catch (IllegalStateException e) {
+            log.error("Permission denied: ", e);
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
                     .body(ApiResponseDto.error("PERMISSION_DENIED", e.getMessage()));
+        } catch (BadRequestException e) {
+            log.error("Bad request: ", e);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(ApiResponseDto.error("BAD_REQUEST", e.getMessage()));
+        } catch (Exception e) {
+            log.error("Internal server error: ", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ApiResponseDto.error("INTERNAL_SERVER_ERROR", "An unexpected error occurred"));
         }
-
 
     }
 
@@ -197,12 +233,21 @@ public class ScheduleController {
                     ApiResponseDto.success("SCHEDULE_LIST_SUCCESS", result)
             );
         } catch (IllegalArgumentException e) {
+            log.error("Invalid token: ", e);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(ApiResponseDto.error("INVALID_TOKEN", e.getMessage()));
-
         } catch (IllegalStateException e) {
+            log.error("Permission denied: ", e);
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
                     .body(ApiResponseDto.error("PERMISSION_DENIED", e.getMessage()));
+        } catch (BadRequestException e) {
+            log.error("Bad request: ", e);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(ApiResponseDto.error("BAD_REQUEST", e.getMessage()));
+        } catch (Exception e) {
+            log.error("Internal server error: ", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ApiResponseDto.error("INTERNAL_SERVER_ERROR", "An unexpected error occurred"));
         }
 
     }
@@ -234,12 +279,21 @@ public class ScheduleController {
             );
 
         } catch (IllegalArgumentException e) {
+            log.error("Invalid token: ", e);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(ApiResponseDto.error("INVALID_TOKEN", e.getMessage()));
-
         } catch (IllegalStateException e) {
+            log.error("Permission denied: ", e);
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
                     .body(ApiResponseDto.error("PERMISSION_DENIED", e.getMessage()));
+        } catch (BadRequestException e) {
+            log.error("Bad request: ", e);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(ApiResponseDto.error("BAD_REQUEST", e.getMessage()));
+        } catch (Exception e) {
+            log.error("Internal server error: ", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ApiResponseDto.error("INTERNAL_SERVER_ERROR", "An unexpected error occurred"));
         }
 
 
@@ -269,12 +323,21 @@ public class ScheduleController {
                     ApiResponseDto.success("SCHEDULEPARTICIPANT_LIST_SUCCESS", participants)
             );
         } catch (IllegalArgumentException e) {
+            log.error("Invalid token: ", e);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(ApiResponseDto.error("INVALID_TOKEN", e.getMessage()));
-
         } catch (IllegalStateException e) {
+            log.error("Permission denied: ", e);
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
                     .body(ApiResponseDto.error("PERMISSION_DENIED", e.getMessage()));
+        } catch (BadRequestException e) {
+            log.error("Bad request: ", e);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(ApiResponseDto.error("BAD_REQUEST", e.getMessage()));
+        } catch (Exception e) {
+            log.error("Internal server error: ", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ApiResponseDto.error("INTERNAL_SERVER_ERROR", "An unexpected error occurred"));
         }
     }
 

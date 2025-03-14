@@ -7,7 +7,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.example.swaggerexam.dto.*;
+import org.example.swaggerexam.exception.type.BadRequestException;
 import org.example.swaggerexam.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/auth")
 @Tag(name = "Authentication", description = "인증 관련 API")
 @RequiredArgsConstructor
+@Slf4j
 public class AuthController {
 
     private final UserService userService;
@@ -48,13 +51,21 @@ public class AuthController {
             return ResponseEntity.ok(ApiResponseDto.success("Register_successfully", register));
 
         } catch (IllegalArgumentException e) {
-            // 잘못된 입력값에 대한 예외 처리
-            return ResponseEntity.badRequest()
-                    .body(ApiResponseDto.error("INVALID_INPUT", e.getMessage()));
+            log.error("Invalid token: ", e);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(ApiResponseDto.error("INVALID_TOKEN", e.getMessage()));
+        } catch (IllegalStateException e) {
+            log.error("Permission denied: ", e);
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(ApiResponseDto.error("PERMISSION_DENIED", e.getMessage()));
+        } catch (BadRequestException e) {
+            log.error("Bad request: ", e);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(ApiResponseDto.error("BAD_REQUEST", e.getMessage()));
         } catch (Exception e) {
-            // 기타 예외 처리
+            log.error("Internal server error: ", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(ApiResponseDto.error("SERVER_ERROR", "서버 오류가 발생했습니다."));
+                    .body(ApiResponseDto.error("INTERNAL_SERVER_ERROR", "An unexpected error occurred"));
         }
 
     }
@@ -82,13 +93,21 @@ public class AuthController {
             return ResponseEntity.ok(ApiResponseDto.success("Login successfully", response));
 
         } catch (IllegalArgumentException e) {
-            // 잘못된 입력값에 대한 예외 처리
-            return ResponseEntity.badRequest()
-                    .body(ApiResponseDto.error("INVALID_INPUT", e.getMessage()));
+            log.error("Invalid token: ", e);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(ApiResponseDto.error("INVALID_TOKEN", e.getMessage()));
+        } catch (IllegalStateException e) {
+            log.error("Permission denied: ", e);
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(ApiResponseDto.error("PERMISSION_DENIED", e.getMessage()));
+        } catch (BadRequestException e) {
+            log.error("Bad request: ", e);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(ApiResponseDto.error("BAD_REQUEST", e.getMessage()));
         } catch (Exception e) {
-            // 기타 예외 처리
+            log.error("Internal server error: ", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(ApiResponseDto.error("SERVER_ERROR", "서버 오류가 발생했습니다."));
+                    .body(ApiResponseDto.error("INTERNAL_SERVER_ERROR", "An unexpected error occurred"));
         }
 
 
@@ -118,13 +137,21 @@ public class AuthController {
 
             return ResponseEntity.ok(ApiResponseDto.success("Logged out successfully", result));
         } catch (IllegalArgumentException e) {
-            // 잘못된 입력값에 대한 예외 처리
-            return ResponseEntity.badRequest()
-                    .body(ApiResponseDto.error("INVALID_INPUT", e.getMessage()));
+            log.error("Invalid token: ", e);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(ApiResponseDto.error("INVALID_TOKEN", e.getMessage()));
+        } catch (IllegalStateException e) {
+            log.error("Permission denied: ", e);
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(ApiResponseDto.error("PERMISSION_DENIED", e.getMessage()));
+        } catch (BadRequestException e) {
+            log.error("Bad request: ", e);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(ApiResponseDto.error("BAD_REQUEST", e.getMessage()));
         } catch (Exception e) {
-            // 기타 예외 처리
+            log.error("Internal server error: ", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(ApiResponseDto.error("SERVER_ERROR", "서버 오류가 발생했습니다."));
+                    .body(ApiResponseDto.error("INTERNAL_SERVER_ERROR", "An unexpected error occurred"));
         }
 
     }
@@ -148,13 +175,21 @@ public class AuthController {
 
             return ResponseEntity.ok(ApiResponseDto.success("USERS_LIST_SUCCESS", users));
         } catch (IllegalArgumentException e) {
-            // 잘못된 입력값에 대한 예외 처리
-            return ResponseEntity.badRequest()
-                    .body(ApiResponseDto.error("INVALID_INPUT", e.getMessage()));
+            log.error("Invalid token: ", e);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(ApiResponseDto.error("INVALID_TOKEN", e.getMessage()));
+        } catch (IllegalStateException e) {
+            log.error("Permission denied: ", e);
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(ApiResponseDto.error("PERMISSION_DENIED", e.getMessage()));
+        } catch (BadRequestException e) {
+            log.error("Bad request: ", e);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(ApiResponseDto.error("BAD_REQUEST", e.getMessage()));
         } catch (Exception e) {
-            // 기타 예외 처리
+            log.error("Internal server error: ", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(ApiResponseDto.error("SERVER_ERROR", "서버 오류가 발생했습니다."));
+                    .body(ApiResponseDto.error("INTERNAL_SERVER_ERROR", "An unexpected error occurred"));
         }
 
 
@@ -178,13 +213,21 @@ public class AuthController {
 
             return ResponseEntity.ok(ApiResponseDto.success("USER_LIST_SUCCESS", userDto));
         } catch (IllegalArgumentException e) {
-            // 잘못된 입력값에 대한 예외 처리
-            return ResponseEntity.badRequest()
-                    .body(ApiResponseDto.error("INVALID_INPUT", e.getMessage()));
+            log.error("Invalid token: ", e);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(ApiResponseDto.error("INVALID_TOKEN", e.getMessage()));
+        } catch (IllegalStateException e) {
+            log.error("Permission denied: ", e);
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(ApiResponseDto.error("PERMISSION_DENIED", e.getMessage()));
+        } catch (BadRequestException e) {
+            log.error("Bad request: ", e);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(ApiResponseDto.error("BAD_REQUEST", e.getMessage()));
         } catch (Exception e) {
-            // 기타 예외 처리
+            log.error("Internal server error: ", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(ApiResponseDto.error("SERVER_ERROR", "서버 오류가 발생했습니다."));
+                    .body(ApiResponseDto.error("INTERNAL_SERVER_ERROR", "An unexpected error occurred"));
         }
     }
 
