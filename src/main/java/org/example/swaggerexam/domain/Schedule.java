@@ -44,8 +44,8 @@ public class Schedule {
 
 
     // 일정을 만든 유저 (OWNER)
-    @ManyToOne(fetch = FetchType.LAZY) // 지연 로딩으로 설정 (필요할 때만 로드)
-    @JoinColumn(name = "owner_id", nullable = false) // 외래 키 매핑
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner_id", nullable = false)
     private User owner;
 
 
@@ -61,7 +61,6 @@ public class Schedule {
     )
     private Set<User> users =  new HashSet<>();
 
-    // ScheduleParticipant와의 1:N 관계
     @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ScheduleParticipant> scheduleParticipants = new ArrayList<>();
 
